@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 // import FormNewPost from "../component/FormNewPost.js";
-// import Modal from "../component/Modal.js";
-import { useDispatch, useSelector } from "react-redux";
 // import { addPost, deletePost, initPost } from "../store/actions/postsActions.js";
 // import { deletePostApi, getUserPosts } from "../services/postsApi.js";
 // import { getUserDetail } from "../services/usersApi.js";
-import { DispatchToProps, StateToProps } from "./container/container.js";
-import { Button, Layout } from "components/index.js";
-import PostList from "./components/PostList.js";
+import { DispatchToProps, StateToProps } from "./container/container";
+import { Layout, Modal, NewPostForm } from "components";
+import PostList from "./components/PostList";
 
 const Posts = () => {
   // @hooks
@@ -77,9 +75,9 @@ const Posts = () => {
           handleDeletePost={(postId) => handleDeletePost(postId)}
         />
 
-        {/* <Modal isOpen={isFormOpen} title="Add New Post" onClose={() => setIsFormOpen(false)}>
-          <FormNewPost onSuccess={(payload) => handleOnSuccess(payload)} />
-        </Modal> */}
+        <Modal isOpen={isFormOpen} title="Add New Post" onClose={() => setIsFormOpen(false)}>
+          <NewPostForm onSuccess={(payload) => handleOnSuccess(payload)} />
+        </Modal>
       </section>
     </Layout>
   );
