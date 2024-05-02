@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 // import FormNewPost from "../component/FormNewPost.js";
 // import { addPost, deletePost, initPost } from "../store/actions/postsActions.js";
 // import { deletePostApi, getUserPosts } from "../services/postsApi.js";
 // import { getUserDetail } from "../services/usersApi.js";
-import { DispatchToProps, StateToProps } from "./container/container";
-import { Layout, Modal, NewPostForm } from "components";
-import PostList from "./components/PostList";
+import { DispatchToProps, StateToProps } from './container/container'
+import { Layout, Modal, NewPostForm } from 'components'
+import PostList from './components/PostList'
 
 const Posts = () => {
   // @hooks
-  const { userId } = useParams();
+  const { userId } = useParams()
 
-  const state = StateToProps.useContainer();
-  const dispatch = DispatchToProps.useContainer();
+  const state = StateToProps.useContainer()
+  const dispatch = DispatchToProps.useContainer()
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(false)
 
   useEffect(() => {
-    dispatch.getPostList(userId);
-  }, [userId]);
+    dispatch.getPostList(userId)
+  }, [userId])
 
   // useEffect(() => {
   //   const fetchUserAndPosts = async () => {
@@ -44,23 +44,19 @@ const Posts = () => {
   const handleOnSuccess = (payload) => {
     // dispatch(addPost(payload));
     // setIsFormOpen(false);
-  };
+  }
 
-  const handleDeletePost = async (postId) => {
-    // try {
-    //   await deletePostApi(postId);
-    //   dispatch(deletePost(postId));
-    // } catch (error) {
-    //   console.error("Error deleting post:", error);
-    // }
-  };
+  const handleDeletePost = (postId) => {
+    dispatch.deletePost(postId)
+  }
 
   return (
     <Layout>
       <section className="mt-16 bg-white rounded p-4">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl font-semibold">
-            <button onClick={() => navigate(-1)}>{"< "}</button> Posts by {state.selectedUser}
+            <button onClick={() => navigate(-1)}>{'< '}</button> Posts by{' '}
+            {state.selectedUser}
           </h2>
           <button
             onClick={() => setIsFormOpen(true)}
@@ -75,12 +71,16 @@ const Posts = () => {
           handleDeletePost={(postId) => handleDeletePost(postId)}
         />
 
-        <Modal isOpen={isFormOpen} title="Add New Post" onClose={() => setIsFormOpen(false)}>
+        <Modal
+          isOpen={isFormOpen}
+          title="Add New Post"
+          onClose={() => setIsFormOpen(false)}
+        >
           <NewPostForm onSuccess={(payload) => handleOnSuccess(payload)} />
         </Modal>
       </section>
     </Layout>
-  );
-};
+  )
+}
 
-export default Posts;
+export default Posts

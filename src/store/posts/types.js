@@ -1,6 +1,11 @@
 // @Get Posts
-export const GET_POST_LIST_REQUEST = "post/GET_POST_LIST_REQUEST";
-export const GET_POST_LIST_SUCCESS = "post/GET_POST_LIST_SUCCESS";
-export const GET_POST_LIST_FAILED = "post/GET_POST_LIST_FAILED";
+export const GET_POST_LIST_REQUEST = 'post/GET_POST_LIST_REQUEST'
+export const GET_POST_LIST_SUCCESS = 'post/GET_POST_LIST_SUCCESS'
+export const GET_POST_LIST_FAILED = 'post/GET_POST_LIST_FAILED'
 
-export const RESET_STATE = "post/RESET_STATE";
+// @Delete Post
+export const DELETE_POST_REQUEST = 'post/DELETE_POST_REQUEST'
+export const DELETE_POST_SUCCESS = 'post/DELETE_POST_SUCCESS'
+export const DELETE_POST_FAILED = 'post/DELETE_POST_FAILED'
+
+export const RESET_STATE = 'post/RESET_STATE'
