@@ -9,6 +9,7 @@ const INITIAL_STATE = {
   erroMessage: "",
 
   userList: [],
+  selectedUser: "",
 };
 
 function UsersReducers(state = INITIAL_STATE, action) {
@@ -33,6 +34,13 @@ function UsersReducers(state = INITIAL_STATE, action) {
         isUsersLoading: false,
         errorCode: action.payload?.code,
         errorMessage: action.payload?.message,
+      };
+
+    case types.SET_SELECTED_USER:
+      const { userName } = action.payload;
+      return {
+        ...state,
+        selectedUser: userName,
       };
 
     case types.RESET_STATE:

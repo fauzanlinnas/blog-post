@@ -18,3 +18,11 @@ export const getUserListFailed = (error) => {
     payload: error,
   };
 };
+
+// @set selected user
+export const setSelectedUser = (userName) => {
+  return {
+    type: types.SET_SELECTED_USER,
+    payload: { userName },
+  };
+};

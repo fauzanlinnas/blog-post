@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { createContainer } from "unstated-next";
-import * as UsersActions from "store/users/actions";
+import * as PostsActions from "store/posts/actions";
 
 // @compose a container
 function useStateToProps() {
   return useSelector((state) => {
     return {
-      userList: state.users.userList,
+      postList: state.posts.postList,
+      selectedUser: state.users.selectedUser,
     };
   });
 }
@@ -14,8 +15,7 @@ function useStateToProps() {
 function useDispatchToProps() {
   const dispatch = useDispatch();
   return {
-    getUserList: () => dispatch(UsersActions.getUserListRequest()),
-    setSelectedUser: (userName) => dispatch(UsersActions.setSelectedUser(userName)),
+    getPostList: (userId) => dispatch(PostsActions.getPostListRequest(userId)),
   };
 }
 
