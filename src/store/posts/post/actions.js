@@ -39,3 +39,23 @@ export const deletePostFailed = (error) => {
     payload: error,
   }
 }
+
+// @get post detail
+export const getPostDetailRequest = (postId) => {
+  return {
+    type: types.GET_POST_DETAIL_REQUEST,
+    payload: { postId },
+  }
+}
+export const getPostDetailSuccess = (data) => {
+  return {
+    type: types.GET_POST_DETAIL_SUCCESS,
+    payload: data,
+  }
+}
+export const getPostDetailFailed = (error) => {
+  return {
+    type: types.GET_POST_DETAIL_FAILED,
+    payload: error,
+  }
+}

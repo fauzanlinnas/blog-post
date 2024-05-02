@@ -8,6 +8,14 @@ class PostsServices {
   deletePost = (postId) => {
     return Api.delete(`/posts/${postId}`)
   }
+
+  getPostDetail = (postId) => {
+    return Api.get(`/posts/${postId}`)
+  }
+
+  getComments = (postId) => {
+    return Api.get(`/posts/${postId}/comments`)
+  }
 }
 
 const postsServices = new PostsServices()

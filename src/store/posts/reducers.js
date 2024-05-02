@@ -9,6 +9,8 @@ const INITIAL_STATE = {
   erroMessage: '',
 
   postList: [],
+  comments: [],
+  postDetail: null,
 }
 
 function PostsReducers(state = INITIAL_STATE, action) {
@@ -27,7 +29,7 @@ function PostsReducers(state = INITIAL_STATE, action) {
         postList: action.payload,
       }
 
-    // @Post List
+    // @Delete Post
     case types.DELETE_POST_REQUEST:
       return {
         ...state,
@@ -45,8 +47,38 @@ function PostsReducers(state = INITIAL_STATE, action) {
         postList: updatedPosts,
       }
 
+    // @Post Detail
+    case types.GET_POST_DETAIL_REQUEST:
+      return {
+        ...state,
+        isPostsLoading: true,
+      }
+
+    case types.GET_POST_DETAIL_SUCCESS:
+      return {
+        ...state,
+        isPostsLoading: false,
+        postDetail: action.payload,
+      }
+
+    // @Get Comments
+    case types.GET_COMMENTS_REQUEST:
+      return {
+        ...state,
+        isPostsLoading: true,
+      }
+
+    case types.GET_COMMENTS_SUCCESS:
+      return {
+        ...state,
+        isPostsLoading: false,
+        comments: action.payload,
+      }
+
     case types.GET_POST_LIST_FAILED:
     case types.DELETE_POST_FAILED:
+    case types.GET_POST_DETAIL_FAILED:
+    case types.GET_COMMENTS_FAILED:
       return {
         ...state,
         isPostsLoading: false,

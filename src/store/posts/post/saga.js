@@ -10,6 +10,7 @@ import PostsServices from 'services/endpoint/posts.services'
 // @business logic of effect
 export function* handleGetPostListRequest(action) {
   const { userId } = action.payload
+
   try {
     const data = yield call(PostsServices.getPosts, userId)
 
@@ -30,8 +31,21 @@ export function* handleDeletePostRequest(action) {
   }
 }
 
+export function* handleGetPostDetailRequest(action) {
+  const { postId } = action.payload
+
+  try {
+    const data = yield call(PostsServices.getPostDetail, postId)
+
+    yield put(actions.getPostDetailSuccess(data?.data))
+  } catch (error) {
+    yield put(actions.getPostDetailFailed(error.response?.data))
+  }
+}
+
 // @watches every specified action and runs effect method and passes action args to it
 export function* watchPostRequest() {
   yield takeLatest(types.GET_POST_LIST_REQUEST, handleGetPostListRequest)
   yield takeLatest(types.DELETE_POST_REQUEST, handleDeletePostRequest)
+  yield takeLatest(types.GET_POST_DETAIL_REQUEST, handleGetPostDetailRequest)
 }
