@@ -23,24 +23,6 @@ const Posts = () => {
     if (state.postList.length === 0) dispatch.getPostList(userId)
   }, [userId])
 
-  // useEffect(() => {
-  //   const fetchUserAndPosts = async () => {
-  //     try {
-  //       const [userResponse, postsResponse] = await Promise.all([
-  //         getUserDetail(id),
-  //         getUserPosts(id),
-  //       ]);
-
-  //       setUser(userResponse.data);
-  //       dispatch(initPost(postsResponse.data));
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-
-  //   fetchUserAndPosts();
-  // }, [id, dispatch]);
-
   const handleSubmitPost = (title, body) => {
     dispatch.addPost(title, body, userId, () => setIsFormOpen(false))
   }

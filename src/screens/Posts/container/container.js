@@ -16,8 +16,10 @@ function useDispatchToProps() {
   const dispatch = useDispatch()
   return {
     getPostList: (userId) => dispatch(PostsActions.getPostListRequest(userId)),
-    addPost: (title, body, userId, onSuccess) =>
-      dispatch(PostsActions.addPostRequest(title, body, userId, onSuccess)),
+    addPost: (title, body, userId, successCallback) =>
+      dispatch(
+        PostsActions.addPostRequest(title, body, userId, successCallback)
+      ),
     deletePost: (postId) => dispatch(PostsActions.deletePostRequest(postId)),
   }
 }

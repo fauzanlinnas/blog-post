@@ -21,10 +21,10 @@ export const getPostListFailed = (error) => {
 }
 
 // @add post
-export const addPostRequest = (title, body, userId, onSuccess) => {
+export const addPostRequest = (title, body, userId, successCallback) => {
   return {
     type: types.ADD_POST_REQUEST,
-    payload: { title, body, userId, onSuccess },
+    payload: { title, body, userId, successCallback },
   }
 }
 export const addPostSuccess = (data) => {
@@ -41,10 +41,10 @@ export const addPostFailed = (error) => {
 }
 
 // @edit post
-export const editPostRequest = (title, body, postId, onSuccess) => {
+export const editPostRequest = (title, body, postId, successCallback) => {
   return {
     type: types.EDIT_POST_REQUEST,
-    payload: { title, body, postId, onSuccess },
+    payload: { title, body, postId, successCallback },
   }
 }
 export const editPostSuccess = (data) => {

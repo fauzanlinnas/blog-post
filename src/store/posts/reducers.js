@@ -106,12 +106,27 @@ function PostsReducers(state = INITIAL_STATE, action) {
         comments: action.payload,
       }
 
+    // @Add Comment
+    case types.ADD_COMMENT_REQUEST:
+      return {
+        ...state,
+        isPostsLoading: true,
+      }
+
+    case types.ADD_COMMENT_SUCCESS:
+      return {
+        ...state,
+        isPostsLoading: false,
+        comments: [...state.comments, action.payload],
+      }
+
     case types.GET_POST_LIST_FAILED:
     case types.ADD_POST_FAILED:
     case types.EDIT_POST_FAILED:
     case types.DELETE_POST_FAILED:
     case types.GET_POST_DETAIL_FAILED:
     case types.GET_COMMENTS_FAILED:
+    case types.ADD_COMMENT_FAILED:
       return {
         ...state,
         isPostsLoading: false,

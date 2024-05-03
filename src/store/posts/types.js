@@ -23,9 +23,14 @@ export const GET_POST_DETAIL_REQUEST = 'post/GET_POST_DETAIL_REQUEST'
 export const GET_POST_DETAIL_SUCCESS = 'post/GET_POST_DETAIL_SUCCESS'
 export const GET_POST_DETAIL_FAILED = 'post/GET_POST_DETAIL_FAILED'
 
-// @Get Post Comments
+// @Get Comments
 export const GET_COMMENTS_REQUEST = 'post/GET_COMMENTS_REQUEST'
 export const GET_COMMENTS_SUCCESS = 'post/GET_COMMENTS_SUCCESS'
 export const GET_COMMENTS_FAILED = 'post/GET_COMMENTS_FAILED'
+
+// @Add Comments
+export const ADD_COMMENT_REQUEST = 'post/ADD_COMMENT_REQUEST'
+export const ADD_COMMENT_SUCCESS = 'post/ADD_COMMENT_SUCCESS'
+export const ADD_COMMENT_FAILED = 'post/ADD_COMMENT_FAILED'
 
 export const RESET_STATE = 'post/RESET_STATE'

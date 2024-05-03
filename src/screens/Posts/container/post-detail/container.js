@@ -18,9 +18,21 @@ function useDispatchToProps() {
   return {
     getPostDetail: (userId) =>
       dispatch(PostsActions.getPostDetailRequest(userId)),
-    editPost: (title, body, postId, onSuccess) =>
-      dispatch(PostsActions.editPostRequest(title, body, postId, onSuccess)),
+    editPost: (title, body, postId, successCallback) =>
+      dispatch(
+        PostsActions.editPostRequest(title, body, postId, successCallback)
+      ),
     getComments: (postId) => dispatch(PostsActions.getCommentsRequest(postId)),
+    addComment: (postId, body, name, email, successCallback) =>
+      dispatch(
+        PostsActions.addCommentRequest(
+          postId,
+          body,
+          name,
+          email,
+          successCallback
+        )
+      ),
   }
 }
 

@@ -33,10 +33,14 @@ const PostDetail = () => {
     // dispatch(deleteComment(commentId))
   }
 
-  const handleOnSuccess = (payload) => {
-    // dispatch(addComment(payload))
-
-    setIsFormOpen(false)
+  const handleSubmitComment = (body) => {
+    dispatch.addComment(
+      postId,
+      body,
+      'Fauzan Linnas',
+      'fauzanlinnas@gmail.com',
+      () => setIsFormOpen(false)
+    )
   }
 
   const handleOnEditCommentSuccess = (payload) => {
@@ -79,7 +83,7 @@ const PostDetail = () => {
           handleDeleteComment={handleDeleteComment}
           setIsEditComment={setIsEditComment}
           setIsFormOpen={setIsFormOpen}
-          setEditCommentData
+          setEditCommentData={setEditCommentData}
         />
       </section>
 
@@ -89,12 +93,11 @@ const PostDetail = () => {
         onClose={() => setIsFormOpen(false)}
       >
         <NewCommentForm
-          onSuccess={
+          handleSubmitComment={
             isEditComment
               ? (payload) => handleOnEditCommentSuccess(payload)
-              : (payload) => handleOnSuccess(payload)
+              : (body) => handleSubmitComment(body)
           }
-          postId={postId}
           isEdit={isEditComment}
           commentData={editCommentData}
         />

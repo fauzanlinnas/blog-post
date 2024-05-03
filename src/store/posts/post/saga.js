@@ -21,26 +21,26 @@ export function* handleGetPostListRequest(action) {
 }
 
 export function* handleAddPostRequest(action) {
-  const { title, body, userId, onSuccess } = action.payload
+  const { title, body, userId, successCallback } = action.payload
 
   try {
     const data = yield call(PostsServices.addPost, { title, body, userId })
 
     yield put(actions.addPostSuccess(data?.data))
-    yield call(onSuccess)
+    yield call(successCallback)
   } catch (error) {
     yield put(actions.addPostFailed(error.response?.data))
   }
 }
 
 export function* handleEditPostRequest(action) {
-  const { title, body, postId, onSuccess } = action.payload
+  const { title, body, postId, successCallback } = action.payload
 
   try {
     const data = yield call(PostsServices.editPost, { title, body, id: postId })
 
     yield put(actions.editPostSuccess(data?.data))
-    yield call(onSuccess)
+    yield call(successCallback)
   } catch (error) {
     yield put(actions.editPostFailed(error.response?.data))
   }

@@ -20,7 +20,26 @@ export function* handleGetCommentsRequest(action) {
   }
 }
 
+export function* handleAddCommentRequest(action) {
+  const { postId, body, name, email, successCallback } = action.payload
+
+  try {
+    const data = yield call(PostsServices.addComment, {
+      postId,
+      body,
+      name,
+      email,
+    })
+
+    yield put(actions.addCommentSuccess(data?.data))
+    yield call(successCallback)
+  } catch (error) {
+    yield put(actions.addCommentFailed(error.response?.data))
+  }
+}
+
 // @watches every specified action and runs effect method and passes action args to it
 export function* watchCommentsRequest() {
   yield takeLatest(types.GET_COMMENTS_REQUEST, handleGetCommentsRequest)
+  yield takeLatest(types.ADD_COMMENT_REQUEST, handleAddCommentRequest)
 }

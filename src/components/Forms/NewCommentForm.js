@@ -1,43 +1,17 @@
 import React, { useState } from 'react'
 // import { addCommentApi, editCommentApi } from '../services/commentApi'
 
-const NewCommentForm = ({ onSuccess, isEdit, postId, commentData }) => {
+const NewCommentForm = ({ handleSubmitComment, isEdit, commentData }) => {
   const [comment, setComment] = useState(isEdit ? commentData.body : '')
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
 
-    // try {
-    //   const response = await addCommentApi({
-    //     postId,
-    //     body: comment,
-    //     name: 'Fauzan Linnas',
-    //     email: 'fauzanlinnas@gmail.com',
-    //   })
-
-    //   onSuccess(response.data)
-    // } catch (error) {
-    //   console.error(error)
-    // }
-  }
-
-  const handleEditSubmit = async (event) => {
-    event.preventDefault()
-
-    // try {
-    //   const response = await editCommentApi({
-    //     ...commentData,
-    //     body: comment,
-    //   })
-
-    //   onSuccess(response.data)
-    // } catch (error) {
-    //   console.error(error)
-    // }
+    handleSubmitComment(comment)
   }
 
   return (
-    <form onSubmit={isEdit ? handleEditSubmit : handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <textarea
           rows={4}
