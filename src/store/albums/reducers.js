@@ -9,11 +9,12 @@ const INITIAL_STATE = {
   erroMessage: '',
 
   albumList: [],
+  photos: [],
 }
 
 function AlbumsReducers(state = INITIAL_STATE, action) {
   switch (action.type) {
-    // @Albums
+    // @Album List
     case types.GET_ALBUM_LIST_REQUEST:
       return {
         ...state,
@@ -27,7 +28,22 @@ function AlbumsReducers(state = INITIAL_STATE, action) {
         albumList: action.payload,
       }
 
+    // @Photos
+    case types.GET_PHOTOS_REQUEST:
+      return {
+        ...state,
+        isAlbumsLoading: true,
+      }
+
+    case types.GET_PHOTOS_SUCCESS:
+      return {
+        ...state,
+        isAlbumsLoading: false,
+        photos: action.payload,
+      }
+
     case types.GET_ALBUM_LIST_FAILED:
+    case types.GET_PHOTOS_FAILED:
       return {
         ...state,
         isAlbumsLoading: false,

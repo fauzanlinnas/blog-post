@@ -19,3 +19,23 @@ export const getAlbumListFailed = (error) => {
     payload: error,
   }
 }
+
+// @get photos
+export const getPhotosRequest = (albumId) => {
+  return {
+    type: types.GET_PHOTOS_REQUEST,
+    payload: { albumId },
+  }
+}
+export const getPhotosSuccess = (data) => {
+  return {
+    type: types.GET_PHOTOS_SUCCESS,
+    payload: data,
+  }
+}
+export const getPhotosFailed = (error) => {
+  return {
+    type: types.GET_PHOTOS_FAILED,
+    payload: error,
+  }
+}

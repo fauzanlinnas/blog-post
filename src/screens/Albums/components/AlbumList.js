@@ -8,7 +8,7 @@ const AlbumList = ({ albumList, userId }) => {
         <Link
           className="hover:underline font-semibold text-lg text-center border border-gray-400 rounded py-6"
           key={album.id}
-          to={`/users/${userId}/album/${album.id}`}
+          to={`/user/${userId}/album/${album.id}`}
         >
           {album.title}
         </Link>
