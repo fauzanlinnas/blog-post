@@ -29,6 +29,20 @@ function PostsReducers(state = INITIAL_STATE, action) {
         postList: action.payload,
       }
 
+    // @Add Post
+    case types.ADD_POST_REQUEST:
+      return {
+        ...state,
+        isPostsLoading: true,
+      }
+
+    case types.ADD_POST_SUCCESS:
+      return {
+        ...state,
+        isPostsLoading: false,
+        postList: [...state.postList, action.payload],
+      }
+
     // @Delete Post
     case types.DELETE_POST_REQUEST:
       return {
@@ -76,6 +90,7 @@ function PostsReducers(state = INITIAL_STATE, action) {
       }
 
     case types.GET_POST_LIST_FAILED:
+    case types.ADD_POST_FAILED:
     case types.DELETE_POST_FAILED:
     case types.GET_POST_DETAIL_FAILED:
     case types.GET_COMMENTS_FAILED:

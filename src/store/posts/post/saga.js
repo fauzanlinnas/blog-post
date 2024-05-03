@@ -20,6 +20,19 @@ export function* handleGetPostListRequest(action) {
   }
 }
 
+export function* handleAddPostRequest(action) {
+  const { title, body, userId, onSuccess } = action.payload
+
+  try {
+    const data = yield call(PostsServices.addPost, { title, body, userId })
+
+    yield put(actions.addPostSuccess(data?.data))
+    yield call(onSuccess)
+  } catch (error) {
+    yield put(actions.addPostFailed(error.response?.data))
+  }
+}
+
 export function* handleDeletePostRequest(action) {
   const { postId } = action.payload
   try {
@@ -46,6 +59,7 @@ export function* handleGetPostDetailRequest(action) {
 // @watches every specified action and runs effect method and passes action args to it
 export function* watchPostRequest() {
   yield takeLatest(types.GET_POST_LIST_REQUEST, handleGetPostListRequest)
+  yield takeLatest(types.ADD_POST_REQUEST, handleAddPostRequest)
   yield takeLatest(types.DELETE_POST_REQUEST, handleDeletePostRequest)
   yield takeLatest(types.GET_POST_DETAIL_REQUEST, handleGetPostDetailRequest)
 }

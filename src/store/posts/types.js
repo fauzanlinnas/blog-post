@@ -3,6 +3,11 @@ export const GET_POST_LIST_REQUEST = 'post/GET_POST_LIST_REQUEST'
 export const GET_POST_LIST_SUCCESS = 'post/GET_POST_LIST_SUCCESS'
 export const GET_POST_LIST_FAILED = 'post/GET_POST_LIST_FAILED'
 
+// @Add Post
+export const ADD_POST_REQUEST = 'post/ADD_POST_REQUEST'
+export const ADD_POST_SUCCESS = 'post/ADD_POST_SUCCESS'
+export const ADD_POST_FAILED = 'post/ADD_POST_FAILED'
+
 // @Delete Post
 export const DELETE_POST_REQUEST = 'post/DELETE_POST_REQUEST'
 export const DELETE_POST_SUCCESS = 'post/DELETE_POST_SUCCESS'

@@ -20,6 +20,26 @@ export const getPostListFailed = (error) => {
   }
 }
 
+// @add post
+export const addPostRequest = (title, body, userId, onSuccess) => {
+  return {
+    type: types.ADD_POST_REQUEST,
+    payload: { title, body, userId, onSuccess },
+  }
+}
+export const addPostSuccess = (data) => {
+  return {
+    type: types.ADD_POST_SUCCESS,
+    payload: data,
+  }
+}
+export const addPostFailed = (error) => {
+  return {
+    type: types.ADD_POST_FAILED,
+    payload: error,
+  }
+}
+
 // @delete post
 export const deletePostRequest = (postId) => {
   return {

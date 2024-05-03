@@ -5,6 +5,10 @@ class PostsServices {
     return Api.get(`/users/${userId}/posts`)
   }
 
+  addPost = (payload) => {
+    return Api.post('/posts', payload)
+  }
+
   deletePost = (postId) => {
     return Api.delete(`/posts/${postId}`)
   }

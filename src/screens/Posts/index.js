@@ -41,9 +41,8 @@ const Posts = () => {
   //   fetchUserAndPosts();
   // }, [id, dispatch]);
 
-  const handleOnSuccess = (payload) => {
-    // dispatch(addPost(payload));
-    // setIsFormOpen(false);
+  const handleAddPost = (title, body) => {
+    dispatch.addPost(title, body, userId, () => setIsFormOpen(false))
   }
 
   const handleDeletePost = (postId) => {
@@ -76,7 +75,9 @@ const Posts = () => {
           title="Add New Post"
           onClose={() => setIsFormOpen(false)}
         >
-          <NewPostForm onSuccess={(payload) => handleOnSuccess(payload)} />
+          <NewPostForm
+            handleAddPost={(title, body) => handleAddPost(title, body)}
+          />
         </Modal>
       </section>
     </Layout>
