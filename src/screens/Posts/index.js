@@ -33,7 +33,7 @@ const Posts = () => {
 
   return (
     <Layout>
-      <section className="mt-16 bg-white rounded p-4">
+      <section className="md:mt-16 bg-white rounded p-4">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl font-semibold">
             <button onClick={() => navigate(-1)}>{'< '}</button> Posts by{' '}

@@ -1,30 +1,31 @@
-import { createPortal } from "react-dom";
-import { CloseIcon } from "assets/icon";
+import { createPortal } from 'react-dom'
+import { CloseIcon } from 'assets/icon'
 
 const MODAL_STYLES = {
-  position: "fixed",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  backgroundColor: "#FFF",
-  padding: "24px",
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  backgroundColor: '#FFF',
+  padding: '24px',
   zIndex: 1001,
-  borderRadius: "10px",
-  width: "640px",
-};
+  borderRadius: '10px',
+  width: '90%',
+  maxWidth: '640px',
+}
 
 const OVERLAY_STYLES = {
-  position: "fixed",
+  position: 'fixed',
   top: 0,
   left: 0,
   right: 0,
   bottom: 0,
-  backgroundColor: "rgba(0, 0, 0, .4)",
+  backgroundColor: 'rgba(0, 0, 0, .4)',
   zIndex: 1000,
-};
+}
 
 const Modal = ({ isOpen, children, onClose, title, titleIcon }) => {
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
   return createPortal(
     <>
@@ -32,7 +33,9 @@ const Modal = ({ isOpen, children, onClose, title, titleIcon }) => {
       <div style={MODAL_STYLES}>
         <div className="flex items-center mb-4">
           {titleIcon}
-          <h3 className={`${titleIcon ? "ml-2" : ""} text-lg flex-1 font-bold`}>{title}</h3>
+          <h3 className={`${titleIcon ? 'ml-2' : ''} text-lg flex-1 font-bold`}>
+            {title}
+          </h3>
           <button onClick={onClose}>
             <CloseIcon />
           </button>
@@ -40,8 +43,8 @@ const Modal = ({ isOpen, children, onClose, title, titleIcon }) => {
         {children}
       </div>
     </>,
-    document.getElementById("modal-root")
-  );
-};
+    document.getElementById('modal-root')
+  )
+}
 
-export { Modal };
+export { Modal }

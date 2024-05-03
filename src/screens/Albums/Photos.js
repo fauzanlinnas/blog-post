@@ -20,7 +20,7 @@ const Photos = () => {
 
   return (
     <Layout>
-      <section className="mt-16 bg-white rounded p-4">
+      <section className="md:mt-16 bg-white rounded p-4">
         <h2 className="mb-4 text-2xl font-semibold">
           <button onClick={() => navigate(-1)}>{'<'}</button> Photos
         </h2>

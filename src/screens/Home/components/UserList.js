@@ -10,7 +10,7 @@ const User = ({ userData, onSelectUser }) => {
     >
       <div>
         <p className="text-xl font-medium">{userData.name}</p>
-        <p>{userData.email}</p>
+        <p>{userData.email.toLowerCase()}</p>
       </div>
 
       <div className="space-y-2">

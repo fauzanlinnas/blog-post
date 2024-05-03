@@ -7,7 +7,9 @@ import {
 } from './container/post-detail/container'
 import { Button, Layout, Modal, NewCommentForm, NewPostForm } from 'components'
 import Post from './components/Post'
-import Comments from './components/Comments'
+import Comments from './components/comments/Comments'
+import CommentSection from './components/comments/CommentSection'
+import Modals from './components/Modals'
 
 const PostDetail = () => {
   // @hooks
@@ -61,7 +63,7 @@ const PostDetail = () => {
 
   return (
     <Layout>
-      <section className="mt-16 bg-white rounded p-4">
+      <section className="md:mt-16 bg-white rounded p-4">
         <div className="mb-4 flex items-center justify-between space-x-3">
           <h2 className="mb-1 text-2xl font-semibold">
             <button onClick={() => navigate(-1)}>{'< '}</button> Back
@@ -75,46 +77,25 @@ const PostDetail = () => {
         {state.postDetail && <Post postDetail={state.postDetail} />}
       </section>
 
-      <section className="mt-4 bg-white rounded p-4">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-bold">Comments</h3>
-          <Button
-            onClick={() => setIsFormOpen(true)}
-            variant="primary"
-            title="Add Comment"
-          />
-        </div>
-        <Comments
-          comments={state.comments}
-          handleDeleteComment={handleDeleteComment}
-          setIsEditComment={setIsEditComment}
-          setIsFormOpen={setIsFormOpen}
-          setEditCommentData={setEditCommentData}
-        />
-      </section>
+      <CommentSection
+        setIsFormOpen={setIsFormOpen}
+        comments={state.comments}
+        handleDeleteComment={handleDeleteComment}
+        setIsEditComment={setIsEditComment}
+        setEditCommentData={setEditCommentData}
+      />
 
-      <Modal
-        isOpen={isFormOpen}
-        title={isEditComment ? 'Edit Comment' : 'Add Comment'}
-        onClose={() => setIsFormOpen(false)}
-      >
-        <NewCommentForm
-          handleSubmitComment={(body) => handleSubmitComment(body)}
-          isEdit={isEditComment}
-          commentData={editCommentData}
-        />
-      </Modal>
-      <Modal
-        isOpen={isEditFormOpen}
-        title="Edit Post"
-        onClose={() => setIsEditFormOpen(false)}
-      >
-        <NewPostForm
-          handleSubmitPost={(title, body) => handleOnEdit(title, body)}
-          isEdit={true}
-          postData={state.postDetail}
-        />
-      </Modal>
+      <Modals
+        isFormOpen={isFormOpen}
+        isEditComment={isEditComment}
+        setIsFormOpen={setIsFormOpen}
+        handleSubmitComment={handleSubmitComment}
+        editCommentData={editCommentData}
+        isEditFormOpen={isEditFormOpen}
+        setIsEditFormOpen={setIsEditFormOpen}
+        handleOnEdit={handleOnEdit}
+        postDetail={state.postDetail}
+      />
     </Layout>
   )
 }

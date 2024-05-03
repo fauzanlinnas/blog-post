@@ -16,7 +16,7 @@ const PhotosGrid = ({ photos, setActivePhoto }) => {
             alt={photo.title}
             className="max-w-full h-auto"
           />
-          <p className="mt-1 text-center">{photo.title}</p>
+          <p className="mt-1 text-center text-sm md:text-base">{photo.title}</p>
         </div>
       ))}
     </div>
