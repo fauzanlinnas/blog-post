@@ -41,7 +41,10 @@ const PostDetail = () => {
         body,
         editCommentData.name,
         editCommentData.email,
-        () => setIsFormOpen(false)
+        () => {
+          setIsEditComment(false)
+          setIsFormOpen(false)
+        }
       )
     else
       dispatch.addComment(
