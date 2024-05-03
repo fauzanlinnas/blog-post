@@ -33,6 +33,17 @@ function useDispatchToProps() {
           successCallback
         )
       ),
+    editComment: (postId, commentId, body, name, email, successCallback) =>
+      dispatch(
+        PostsActions.editCommentRequest(
+          postId,
+          commentId,
+          body,
+          name,
+          email,
+          successCallback
+        )
+      ),
   }
 }
 

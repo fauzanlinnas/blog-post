@@ -34,19 +34,23 @@ const PostDetail = () => {
   }
 
   const handleSubmitComment = (body) => {
-    dispatch.addComment(
-      postId,
-      body,
-      'Fauzan Linnas',
-      'fauzanlinnas@gmail.com',
-      () => setIsFormOpen(false)
-    )
-  }
-
-  const handleOnEditCommentSuccess = (payload) => {
-    // dispatch(editComment(payload))
-
-    setIsFormOpen(false)
+    if (isEditComment)
+      dispatch.editComment(
+        postId,
+        editCommentData.id,
+        body,
+        editCommentData.name,
+        editCommentData.email,
+        () => setIsFormOpen(false)
+      )
+    else
+      dispatch.addComment(
+        postId,
+        body,
+        'Fauzan Linnas',
+        'fauzanlinnas@gmail.com',
+        () => setIsFormOpen(false)
+      )
   }
 
   const handleOnEdit = (title, body) => {
@@ -93,11 +97,7 @@ const PostDetail = () => {
         onClose={() => setIsFormOpen(false)}
       >
         <NewCommentForm
-          handleSubmitComment={
-            isEditComment
-              ? (payload) => handleOnEditCommentSuccess(payload)
-              : (body) => handleSubmitComment(body)
-          }
+          handleSubmitComment={(body) => handleSubmitComment(body)}
           isEdit={isEditComment}
           commentData={editCommentData}
         />

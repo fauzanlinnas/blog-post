@@ -120,6 +120,22 @@ function PostsReducers(state = INITIAL_STATE, action) {
         comments: [...state.comments, action.payload],
       }
 
+    // @Edit Comment
+    case types.EDIT_COMMENT_REQUEST:
+      return {
+        ...state,
+        isPostsLoading: true,
+      }
+
+    case types.EDIT_COMMENT_SUCCESS:
+      return {
+        ...state,
+        isPostsLoading: false,
+        comments: state.comments.map((comment) =>
+          comment.id === action.payload.id ? action.payload : comment
+        ),
+      }
+
     case types.GET_POST_LIST_FAILED:
     case types.ADD_POST_FAILED:
     case types.EDIT_POST_FAILED:
@@ -127,6 +143,7 @@ function PostsReducers(state = INITIAL_STATE, action) {
     case types.GET_POST_DETAIL_FAILED:
     case types.GET_COMMENTS_FAILED:
     case types.ADD_COMMENT_FAILED:
+    case types.EDIT_COMMENT_FAILED:
       return {
         ...state,
         isPostsLoading: false,

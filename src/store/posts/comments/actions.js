@@ -45,3 +45,30 @@ export const addCommentFailed = (error) => {
     payload: error,
   }
 }
+
+// @add comments
+export const editCommentRequest = (
+  postId,
+  commentId,
+  body,
+  name,
+  email,
+  successCallback
+) => {
+  return {
+    type: types.EDIT_COMMENT_REQUEST,
+    payload: { postId, commentId, body, name, email, successCallback },
+  }
+}
+export const editCommentSuccess = (data) => {
+  return {
+    type: types.EDIT_COMMENT_SUCCESS,
+    payload: data,
+  }
+}
+export const editCommentFailed = (error) => {
+  return {
+    type: types.EDIT_COMMENT_FAILED,
+    payload: error,
+  }
+}
