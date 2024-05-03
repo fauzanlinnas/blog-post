@@ -40,6 +40,26 @@ export const addPostFailed = (error) => {
   }
 }
 
+// @edit post
+export const editPostRequest = (title, body, postId, onSuccess) => {
+  return {
+    type: types.EDIT_POST_REQUEST,
+    payload: { title, body, postId, onSuccess },
+  }
+}
+export const editPostSuccess = (data) => {
+  return {
+    type: types.EDIT_POST_SUCCESS,
+    payload: data,
+  }
+}
+export const editPostFailed = (error) => {
+  return {
+    type: types.EDIT_POST_FAILED,
+    payload: error,
+  }
+}
+
 // @delete post
 export const deletePostRequest = (postId) => {
   return {

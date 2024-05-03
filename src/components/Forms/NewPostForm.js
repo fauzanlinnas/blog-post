@@ -2,7 +2,7 @@ import { Button } from 'components/Buttons'
 import React, { useState } from 'react'
 // import { createPost, editPostApi } from "../services/postsApi";
 
-const NewPostForm = ({ handleAddPost, isEdit, postData }) => {
+const NewPostForm = ({ handleSubmitPost, isEdit, postData }) => {
   const [title, setTitle] = useState(isEdit ? postData.title : '')
   const [body, setBody] = useState(isEdit ? postData.body : '')
 
@@ -14,30 +14,13 @@ const NewPostForm = ({ handleAddPost, isEdit, postData }) => {
     setBody(event.target.value)
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
-
-    handleAddPost(title, body)
-  }
-
-  const handleEdit = async (event) => {
-    event.preventDefault()
-
-    // try {
-    //   const response = await editPostApi({
-    //     ...postData,
-    //     title,
-    //     body,
-    //   });
-
-    //   onSuccess(response.data);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    handleSubmitPost(title, body)
   }
 
   return (
-    <form onSubmit={isEdit ? handleEdit : handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="title">Title</label>
         <input

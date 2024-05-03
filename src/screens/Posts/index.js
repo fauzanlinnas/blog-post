@@ -20,7 +20,7 @@ const Posts = () => {
   const [isFormOpen, setIsFormOpen] = useState(false)
 
   useEffect(() => {
-    dispatch.getPostList(userId)
+    if (state.postList.length === 0) dispatch.getPostList(userId)
   }, [userId])
 
   // useEffect(() => {
@@ -41,7 +41,7 @@ const Posts = () => {
   //   fetchUserAndPosts();
   // }, [id, dispatch]);
 
-  const handleAddPost = (title, body) => {
+  const handleSubmitPost = (title, body) => {
     dispatch.addPost(title, body, userId, () => setIsFormOpen(false))
   }
 
@@ -76,7 +76,7 @@ const Posts = () => {
           onClose={() => setIsFormOpen(false)}
         >
           <NewPostForm
-            handleAddPost={(title, body) => handleAddPost(title, body)}
+            handleSubmitPost={(title, body) => handleSubmitPost(title, body)}
           />
         </Modal>
       </section>

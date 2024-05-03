@@ -8,6 +8,11 @@ export const ADD_POST_REQUEST = 'post/ADD_POST_REQUEST'
 export const ADD_POST_SUCCESS = 'post/ADD_POST_SUCCESS'
 export const ADD_POST_FAILED = 'post/ADD_POST_FAILED'
 
+// @Edit Post
+export const EDIT_POST_REQUEST = 'post/EDIT_POST_REQUEST'
+export const EDIT_POST_SUCCESS = 'post/EDIT_POST_SUCCESS'
+export const EDIT_POST_FAILED = 'post/EDIT_POST_FAILED'
+
 // @Delete Post
 export const DELETE_POST_REQUEST = 'post/DELETE_POST_REQUEST'
 export const DELETE_POST_SUCCESS = 'post/DELETE_POST_SUCCESS'

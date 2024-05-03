@@ -9,6 +9,10 @@ class PostsServices {
     return Api.post('/posts', payload)
   }
 
+  editPost = (payload) => {
+    return Api.put(`/posts/${payload.id}`, payload)
+  }
+
   deletePost = (postId) => {
     return Api.delete(`/posts/${postId}`)
   }
@@ -19,6 +23,10 @@ class PostsServices {
 
   getComments = (postId) => {
     return Api.get(`/posts/${postId}/comments`)
+  }
+
+  addComment = (payload) => {
+    return Api.post('/comments', payload)
   }
 }
 

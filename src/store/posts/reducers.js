@@ -43,6 +43,23 @@ function PostsReducers(state = INITIAL_STATE, action) {
         postList: [...state.postList, action.payload],
       }
 
+    // @Edit Post
+    case types.EDIT_POST_REQUEST:
+      return {
+        ...state,
+        isPostsLoading: true,
+      }
+
+    case types.EDIT_POST_SUCCESS:
+      return {
+        ...state,
+        isPostsLoading: false,
+        postDetail: action.payload,
+        postList: state.postList.map((post) =>
+          post.id === action.payload.id ? action.payload : post
+        ),
+      }
+
     // @Delete Post
     case types.DELETE_POST_REQUEST:
       return {
@@ -91,6 +108,7 @@ function PostsReducers(state = INITIAL_STATE, action) {
 
     case types.GET_POST_LIST_FAILED:
     case types.ADD_POST_FAILED:
+    case types.EDIT_POST_FAILED:
     case types.DELETE_POST_FAILED:
     case types.GET_POST_DETAIL_FAILED:
     case types.GET_COMMENTS_FAILED:

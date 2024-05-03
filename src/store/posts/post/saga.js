@@ -33,6 +33,19 @@ export function* handleAddPostRequest(action) {
   }
 }
 
+export function* handleEditPostRequest(action) {
+  const { title, body, postId, onSuccess } = action.payload
+
+  try {
+    const data = yield call(PostsServices.editPost, { title, body, id: postId })
+
+    yield put(actions.editPostSuccess(data?.data))
+    yield call(onSuccess)
+  } catch (error) {
+    yield put(actions.editPostFailed(error.response?.data))
+  }
+}
+
 export function* handleDeletePostRequest(action) {
   const { postId } = action.payload
   try {
@@ -60,6 +73,7 @@ export function* handleGetPostDetailRequest(action) {
 export function* watchPostRequest() {
   yield takeLatest(types.GET_POST_LIST_REQUEST, handleGetPostListRequest)
   yield takeLatest(types.ADD_POST_REQUEST, handleAddPostRequest)
+  yield takeLatest(types.EDIT_POST_REQUEST, handleEditPostRequest)
   yield takeLatest(types.DELETE_POST_REQUEST, handleDeletePostRequest)
   yield takeLatest(types.GET_POST_DETAIL_REQUEST, handleGetPostDetailRequest)
 }

@@ -5,8 +5,9 @@ import {
   DispatchToProps,
   StateToProps,
 } from './container/post-detail/container'
-import { Layout, Modal, NewCommentForm, NewPostForm } from 'components'
+import { Button, Layout, Modal, NewCommentForm, NewPostForm } from 'components'
 import Post from './components/Post'
+import Comments from './components/Comments'
 
 const PostDetail = () => {
   // @hooks
@@ -17,7 +18,6 @@ const PostDetail = () => {
 
   const navigate = useNavigate()
 
-  const [post, setPost] = useState(null)
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [isEditComment, setIsEditComment] = useState(false)
   const [editCommentData, setEditCommentData] = useState(null)
@@ -45,11 +45,8 @@ const PostDetail = () => {
     setIsFormOpen(false)
   }
 
-  const handleOnEditSuccess = (payload) => {
-    setPost(payload)
-    // dispatch(editPost(payload))
-
-    setIsEditFormOpen(false)
+  const handleOnEdit = (title, body) => {
+    dispatch.editPost(title, body, postId, () => setIsEditFormOpen(false))
   }
 
   return (
@@ -59,59 +56,39 @@ const PostDetail = () => {
           <h2 className="mb-1 text-2xl font-semibold">
             <button onClick={() => navigate(-1)}>{'< '}</button> Back
           </h2>
-          <button
-            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          <Button
             onClick={() => setIsEditFormOpen(true)}
-          >
-            Edit Post
-          </button>
+            variant="primary"
+            title="Edit Post"
+          />
         </div>
         {state.postDetail && <Post postDetail={state.postDetail} />}
       </section>
 
       <section className="mt-4 bg-white rounded p-4">
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-bold">Comments</h3>
-          <button
+          <Button
             onClick={() => setIsFormOpen(true)}
-            className="ml-3 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-          >
-            Add New Comment
-          </button>
+            variant="primary"
+            title="Add Comment"
+          />
         </div>
-        {state.comments.map((comment) => (
-          <div key={comment.id} className="mb-4">
-            <div className="flex items-center">
-              <h4 className="font-semibold">
-                {comment.name} ({comment.email})
-              </h4>
-              <button
-                onClick={() => handleDeleteComment(comment.id)}
-                className=" text-red-600 font-bold ml-2"
-              >
-                Delete comment
-              </button>
-              <button
-                onClick={() => {
-                  setIsEditComment(true)
-                  setIsFormOpen(true)
-                  setEditCommentData(comment)
-                }}
-                className=" text-blue-600 font-bold ml-2"
-              >
-                Edit comment
-              </button>
-            </div>
-            <p className="whitespace-pre-wrap">{comment.body}</p>
-          </div>
-        ))}
+        <Comments
+          comments={state.comments}
+          handleDeleteComment={handleDeleteComment}
+          setIsEditComment={setIsEditComment}
+          setIsFormOpen={setIsFormOpen}
+          setEditCommentData
+        />
       </section>
+
       <Modal
         isOpen={isFormOpen}
-        title={isEditComment ? 'Edit Comment' : 'Add New Comment'}
+        title={isEditComment ? 'Edit Comment' : 'Add Comment'}
         onClose={() => setIsFormOpen(false)}
       >
-        {/* <NewCommentForm
+        <NewCommentForm
           onSuccess={
             isEditComment
               ? (payload) => handleOnEditCommentSuccess(payload)
@@ -120,7 +97,7 @@ const PostDetail = () => {
           postId={postId}
           isEdit={isEditComment}
           commentData={editCommentData}
-        /> */}
+        />
       </Modal>
       <Modal
         isOpen={isEditFormOpen}
@@ -128,9 +105,9 @@ const PostDetail = () => {
         onClose={() => setIsEditFormOpen(false)}
       >
         <NewPostForm
-          onSuccess={(payload) => handleOnEditSuccess(payload)}
+          handleSubmitPost={(title, body) => handleOnEdit(title, body)}
           isEdit={true}
-          postData={post}
+          postData={state.postDetail}
         />
       </Modal>
     </Layout>

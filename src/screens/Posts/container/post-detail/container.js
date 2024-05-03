@@ -18,6 +18,8 @@ function useDispatchToProps() {
   return {
     getPostDetail: (userId) =>
       dispatch(PostsActions.getPostDetailRequest(userId)),
+    editPost: (title, body, postId, onSuccess) =>
+      dispatch(PostsActions.editPostRequest(title, body, postId, onSuccess)),
     getComments: (postId) => dispatch(PostsActions.getCommentsRequest(postId)),
   }
 }
