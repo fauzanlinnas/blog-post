@@ -20,7 +20,7 @@ export const getCommentsFailed = (error) => {
   }
 }
 
-// @add comments
+// @add comment
 export const addCommentRequest = (
   postId,
   body,
@@ -46,7 +46,7 @@ export const addCommentFailed = (error) => {
   }
 }
 
-// @add comments
+// @edit comment
 export const editCommentRequest = (
   postId,
   commentId,
@@ -69,6 +69,26 @@ export const editCommentSuccess = (data) => {
 export const editCommentFailed = (error) => {
   return {
     type: types.EDIT_COMMENT_FAILED,
+    payload: error,
+  }
+}
+
+// @delete comment
+export const deleteCommentRequest = (commentId) => {
+  return {
+    type: types.DELETE_COMMENT_REQUEST,
+    payload: { commentId },
+  }
+}
+export const deleteCommentSuccess = (data) => {
+  return {
+    type: types.DELETE_COMMENT_SUCCESS,
+    payload: data,
+  }
+}
+export const deleteCommentFailed = (error) => {
+  return {
+    type: types.DELETE_COMMENT_FAILED,
     payload: error,
   }
 }

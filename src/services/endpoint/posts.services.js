@@ -32,6 +32,10 @@ class PostsServices {
   editComment = (payload) => {
     return Api.put(`/comments/${payload.id}`, payload)
   }
+
+  deleteComment = (commentId) => {
+    return Api.put(`/comments/${commentId}`)
+  }
 }
 
 const postsServices = new PostsServices()

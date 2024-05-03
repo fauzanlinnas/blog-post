@@ -28,9 +28,8 @@ const PostDetail = () => {
     dispatch.getComments(postId)
   }, [postId])
 
-  const handleDeleteComment = async (commentId) => {
-    // await deleteCommentApi(commentId)
-    // dispatch(deleteComment(commentId))
+  const handleDeleteComment = (commentId) => {
+    dispatch.deleteComment(commentId)
   }
 
   const handleSubmitComment = (body) => {

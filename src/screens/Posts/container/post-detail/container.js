@@ -44,6 +44,8 @@ function useDispatchToProps() {
           successCallback
         )
       ),
+    deleteComment: (commentId) =>
+      dispatch(PostsActions.deleteCommentRequest(commentId)),
   }
 }
 

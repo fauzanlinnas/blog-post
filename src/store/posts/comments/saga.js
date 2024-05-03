@@ -58,9 +58,22 @@ export function* handleEditCommentRequest(action) {
   }
 }
 
+export function* handleDeleteCommentRequest(action) {
+  const { commentId } = action.payload
+
+  try {
+    const data = yield call(PostsServices.deleteComment, commentId)
+
+    yield put(actions.deleteCommentSuccess(data?.data))
+  } catch (error) {
+    yield put(actions.deleteCommentFailed(error.response?.data))
+  }
+}
+
 // @watches every specified action and runs effect method and passes action args to it
 export function* watchCommentsRequest() {
   yield takeLatest(types.GET_COMMENTS_REQUEST, handleGetCommentsRequest)
   yield takeLatest(types.ADD_COMMENT_REQUEST, handleAddCommentRequest)
   yield takeLatest(types.EDIT_COMMENT_REQUEST, handleEditCommentRequest)
+  yield takeLatest(types.DELETE_COMMENT_REQUEST, handleDeleteCommentRequest)
 }

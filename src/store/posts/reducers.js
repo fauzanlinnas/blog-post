@@ -136,6 +136,24 @@ function PostsReducers(state = INITIAL_STATE, action) {
         ),
       }
 
+    // @Edit Comment
+    case types.DELETE_COMMENT_REQUEST:
+      return {
+        ...state,
+        isPostsLoading: true,
+      }
+
+    case types.DELETE_COMMENT_SUCCESS:
+      const updatedComments = state.comments.filter(
+        (comment) => comment.id !== action.payload.id
+      )
+
+      return {
+        ...state,
+        isPostsLoading: false,
+        comments: updatedComments,
+      }
+
     case types.GET_POST_LIST_FAILED:
     case types.ADD_POST_FAILED:
     case types.EDIT_POST_FAILED:
@@ -144,6 +162,7 @@ function PostsReducers(state = INITIAL_STATE, action) {
     case types.GET_COMMENTS_FAILED:
     case types.ADD_COMMENT_FAILED:
     case types.EDIT_COMMENT_FAILED:
+    case types.DELETE_COMMENT_FAILED:
       return {
         ...state,
         isPostsLoading: false,
