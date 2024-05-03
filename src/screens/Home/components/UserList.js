@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-import { LinkButton } from "components";
+import { LinkButton } from 'components'
 
 const User = ({ userData, onSelectUser }) => {
   return (
@@ -21,24 +21,28 @@ const User = ({ userData, onSelectUser }) => {
           onClick={() => onSelectUser(userData.name)}
         />
         <LinkButton
-          href={`/user/${userData.id}/album-list`}
+          href={`/user/${userData.id}/album`}
           variant="secondary"
           title="Albums"
           onClick={() => onSelectUser(userData.name)}
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
 const UserList = ({ userList, onSelectUser }) => {
   return (
     <div className="grid grid-cols-2 gap-2">
       {userList.map((userData) => (
-        <User userData={userData} key={userData.id} onSelectUser={onSelectUser} />
+        <User
+          userData={userData}
+          key={userData.id}
+          onSelectUser={onSelectUser}
+        />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default UserList;
+export default UserList

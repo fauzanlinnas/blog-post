@@ -1,0 +1,6 @@
+// @Get Albums
+export const GET_ALBUM_LIST_REQUEST = 'post/GET_ALBUM_LIST_REQUEST'
+export const GET_ALBUM_LIST_SUCCESS = 'post/GET_ALBUM_LIST_SUCCESS'
+export const GET_ALBUM_LIST_FAILED = 'post/GET_ALBUM_LIST_FAILED'
+
+export const RESET_STATE = 'post/RESET_STATE'

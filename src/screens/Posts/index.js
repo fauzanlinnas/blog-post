@@ -20,7 +20,7 @@ const Posts = () => {
   const [isFormOpen, setIsFormOpen] = useState(false)
 
   useEffect(() => {
-    if (state.postList.length === 0) dispatch.getPostList(userId)
+    dispatch.getPostList(userId)
   }, [userId])
 
   const handleSubmitPost = (title, body) => {
