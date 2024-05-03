@@ -7,7 +7,7 @@ const Modals = ({
   setIsFormOpen,
   handleSubmitComment,
   editCommentData,
-  isEditFormOpen,
+  isEditPostOpen,
   setIsEditFormOpen,
   handleOnEdit,
   postDetail,
@@ -26,7 +26,7 @@ const Modals = ({
         />
       </Modal>
       <Modal
-        isOpen={isEditFormOpen}
+        isOpen={isEditPostOpen}
         title="Edit Post"
         onClose={() => setIsEditFormOpen(false)}
       >

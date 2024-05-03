@@ -12,6 +12,7 @@ const Albums = () => {
   const state = StateToProps.useContainer()
   const dispatch = DispatchToProps.useContainer()
 
+  // @effects
   useEffect(() => {
     dispatch.getAlbumList(userId)
   }, [userId])

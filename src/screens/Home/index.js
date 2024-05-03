@@ -10,6 +10,7 @@ const Home = () => {
   const state = StateToProps.useContainer()
   const dispatch = DispatchToProps.useContainer()
 
+  // @effects
   useEffect(() => {
     dispatch.getUserList()
   }, [])

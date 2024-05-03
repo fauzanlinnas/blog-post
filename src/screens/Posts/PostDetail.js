@@ -5,11 +5,10 @@ import {
   DispatchToProps,
   StateToProps,
 } from './container/post-detail/container'
-import { Button, Layout, Modal, NewCommentForm, NewPostForm } from 'components'
-import Post from './components/Post'
-import Comments from './components/comments/Comments'
+import { Layout } from 'components'
 import CommentSection from './components/comments/CommentSection'
 import Modals from './components/Modals'
+import PostSection from './components/posts/PostSection'
 
 const PostDetail = () => {
   // @hooks
@@ -18,13 +17,12 @@ const PostDetail = () => {
   const state = StateToProps.useContainer()
   const dispatch = DispatchToProps.useContainer()
 
-  const navigate = useNavigate()
-
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [isEditComment, setIsEditComment] = useState(false)
   const [editCommentData, setEditCommentData] = useState(null)
-  const [isEditFormOpen, setIsEditFormOpen] = useState(false)
+  const [isEditPostOpen, setIsEditPostOpen] = useState(false)
 
+  // @effects
   useEffect(() => {
     dispatch.getPostDetail(postId)
     dispatch.getComments(postId)
@@ -58,31 +56,25 @@ const PostDetail = () => {
   }
 
   const handleOnEdit = (title, body) => {
-    dispatch.editPost(title, body, postId, () => setIsEditFormOpen(false))
+    dispatch.editPost(title, body, postId, () => setIsEditPostOpen(false))
   }
 
   return (
     <Layout>
-      <section className="md:mt-16 bg-white rounded p-4">
-        <div className="mb-4 flex items-center justify-between space-x-3">
-          <h2 className="mb-1 text-2xl font-semibold">
-            <button onClick={() => navigate(-1)}>{'< '}</button> Back
-          </h2>
-          <Button
-            onClick={() => setIsEditFormOpen(true)}
-            variant="primary"
-            title="Edit Post"
-          />
-        </div>
-        {state.postDetail && <Post postDetail={state.postDetail} />}
-      </section>
+      <PostSection
+        postDetail={state.postDetail}
+        onClickEdit={() => setIsEditPostOpen(true)}
+      />
 
       <CommentSection
-        setIsFormOpen={setIsFormOpen}
+        onClickAddComment={() => setIsFormOpen(true)}
         comments={state.comments}
+        handleEditComment={(comment) => {
+          setIsEditComment(true)
+          setIsFormOpen(true)
+          setEditCommentData(comment)
+        }}
         handleDeleteComment={handleDeleteComment}
-        setIsEditComment={setIsEditComment}
-        setEditCommentData={setEditCommentData}
       />
 
       <Modals
@@ -91,8 +83,8 @@ const PostDetail = () => {
         setIsFormOpen={setIsFormOpen}
         handleSubmitComment={handleSubmitComment}
         editCommentData={editCommentData}
-        isEditFormOpen={isEditFormOpen}
-        setIsEditFormOpen={setIsEditFormOpen}
+        isEditPostOpen={isEditPostOpen}
+        setIsEditPostOpen={setIsEditPostOpen}
         handleOnEdit={handleOnEdit}
         postDetail={state.postDetail}
       />

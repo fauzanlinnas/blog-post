@@ -14,6 +14,7 @@ const Photos = () => {
 
   const [activePhoto, setActivePhoto] = useState(null)
 
+  // @effects
   useEffect(() => {
     dispatch.getPhotos(albumId)
   }, [albumId])

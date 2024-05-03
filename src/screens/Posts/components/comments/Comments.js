@@ -1,12 +1,6 @@
 import React from 'react'
 
-const Comments = ({
-  comments,
-  handleDeleteComment,
-  setIsEditComment,
-  setIsFormOpen,
-  setEditCommentData,
-}) => {
+const Comments = ({ comments, handleDeleteComment, onClickEditComment }) => {
   return (
     <>
       {comments.map((comment) => (
@@ -29,11 +23,7 @@ const Comments = ({
                 Delete
               </button>
               <button
-                onClick={() => {
-                  setIsEditComment(true)
-                  setIsFormOpen(true)
-                  setEditCommentData(comment)
-                }}
+                onClick={() => onClickEditComment(comment)}
                 className=" text-blue-600 font-bold"
               >
                 Edit

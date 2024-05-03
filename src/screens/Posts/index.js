@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-// import FormNewPost from "../component/FormNewPost.js";
-// import { addPost, deletePost, initPost } from "../store/actions/postsActions.js";
-// import { deletePostApi, getUserPosts } from "../services/postsApi.js";
-// import { getUserDetail } from "../services/usersApi.js";
+import { useNavigate, useParams } from 'react-router-dom'
 import { DispatchToProps, StateToProps } from './container/container'
-import { Layout, Modal, NewPostForm } from 'components'
-import PostList from './components/PostList'
+import { Button, Layout, Modal, NewPostForm } from 'components'
+import PostList from './components/posts/PostList'
 
 const Posts = () => {
   // @hooks
   const { userId } = useParams()
+  const navigate = useNavigate()
 
   const state = StateToProps.useContainer()
   const dispatch = DispatchToProps.useContainer()
 
-  const navigate = useNavigate()
-
   const [isFormOpen, setIsFormOpen] = useState(false)
 
+  // @effects
   useEffect(() => {
     dispatch.getPostList(userId)
   }, [userId])
@@ -39,12 +35,11 @@ const Posts = () => {
             <button onClick={() => navigate(-1)}>{'< '}</button> Posts by{' '}
             {state.selectedUser}
           </h2>
-          <button
+          <Button
             onClick={() => setIsFormOpen(true)}
-            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-          >
-            Add New Post
-          </button>
+            variant="primary"
+            title="Add Post"
+          />
         </div>
 
         <PostList
@@ -54,7 +49,7 @@ const Posts = () => {
 
         <Modal
           isOpen={isFormOpen}
-          title="Add New Post"
+          title="Add Post"
           onClose={() => setIsFormOpen(false)}
         >
           <NewPostForm

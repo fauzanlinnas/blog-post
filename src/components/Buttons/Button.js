@@ -19,7 +19,7 @@ const Button = ({ onClick, title, variant, type = 'button' }) => {
   return (
     <button
       type={type}
-      className={`flex items-center justify-center text-white font-bold py-1 px-2 rounded-md ${SolidColorVariants[variant]}`}
+      className={`flex items-center justify-center text-white font-semibold py-1 px-2 rounded-md ${SolidColorVariants[variant]}`}
       onClick={onClick}
     >
       <p>{title}</p>
